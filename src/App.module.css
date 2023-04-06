@@ -1,0 +1,16 @@
+
+
+.background{
+  background-color: #E7F6FF;
+}
+
+.container{
+  background-color: #fff;
+  width: 100%;
+  max-width: 1080px;
+  height: 1526px;
+  margin: 85px auto;
+  border-radius: 20px;
+}
+
+

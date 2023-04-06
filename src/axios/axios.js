@@ -8,6 +8,10 @@ export const api = {
     getItems: async ()=>{
         const items = await request.get('/item')
         return items.data
+    },
+
+    preferItems: async (id,item) =>{
+        await request.put(`/item/${id}`,{...item})
     }
 }
 

@@ -1,0 +1,59 @@
+.container{
+    padding: 45px 60px 40px 60px;
+}
+
+.items{
+    margin: 35px 0px;
+}
+
+.itemsHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.itemsList{
+    margin: 35px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.item{
+    flex-basis: 210px;
+}
+
+.sneakersImage{
+    width: 133px;
+    height: 112px;
+}
+
+.item p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.priceHeader{
+    color: #BDBDBD;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+}
+
+.price{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.unPrefer{
+    background-color: green;
+}
+
+.setPrefer{
+    background-color: red;
+}
+
+
