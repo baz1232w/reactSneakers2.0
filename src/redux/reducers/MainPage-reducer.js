@@ -1,58 +1,93 @@
 import {api} from "../../axios/axios.js";
+import {act} from "react-dom/test-utils";
 
-const SET_ITEMS = 'mainPage/setItem'
+const FETCH_ITEMS_SUCCESS = 'mainPage/fetchItemsSuccess'
+const FETCH_ITEMS = 'mainPage/fetchItems'
+const FETCH_ITEMS_ERROR = 'mainPage/fetchItemsError'
 const TOGGLE_PREFER = 'mainPage/togglePrefer'
+const ADD_TO_CART = 'mainPage/addToCart'
+
 const initialState = {
-    items: []
+    items: [],
+    isLoading: false,
+    error: null,
+    totalPrefer: 0
 }
 
-const mainPageReducer = (state = initialState, action) => {
+export const mainPageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_ITEMS:
+        case FETCH_ITEMS:
+            return{
+                ...state,
+                isLoading: true
+        }
+        case FETCH_ITEMS_SUCCESS:
             return {
                 ...state,
-                items: action.payload
+                items: action.payload,
+                isLoading: false
+            }
+        case FETCH_ITEMS_ERROR:
+            return{
+                ...state,
+                error: action.payload
             }
         case TOGGLE_PREFER:
+            let total = state.totalPrefer
             return {
                 ...state,
                 items: state.items.map(el => {
                     if(el.id === action.payload){
                         el.isPrefer = !el.isPrefer
-                        return el
-                    }else{
-                        return el
+                        if(el.isPrefer){
+                            total++
+                        }else{
+                            total--
+                        }
                     }
+
+                    return el
+                }),
+                totalPrefer: total
+            }
+        case ADD_TO_CART:
+            return {
+                ...state,
+                items: state.items.map(el => {
+                    if(el.id === action.payload){
+                        el.isAdded = !el.isAdded
+                    }
+                    return el
                 })
             }
     }
     return state
 }
 
-const setItemAC = (items) => {
-    return {
-        type: SET_ITEMS,
-        payload: items
-    }
-}
 
 
-const togglePrefer = (id) => {
-    return {
-        type: TOGGLE_PREFER,
-        payload: id
-    }
+export const setAddedToCart = (id,item) => async (dispatch) =>{
+    const data = {...item}
+    data.isAdded = !data.isAdded
+    dispatch({type:ADD_TO_CART, payload: id})
+    await api.addedItems(id,data)
 }
 
 export const fetchItems = () => async (dispatch) => {
-    const items = await api.getItems()
-    dispatch(setItemAC(items))
+    dispatch({type:FETCH_ITEMS})
+    try {
+        const items = await api.getItems()
+        dispatch({type:FETCH_ITEMS_SUCCESS, payload:items})
+    } catch (error){
+        dispatch({type:FETCH_ITEMS_ERROR, payload:error.text})
+    }
+
 }
 
 export const setPreferItem = (id, item) => async (dispatch) => {
-    item.isPrefer = !item.isPrefer
-    await api.preferItems(id, item)
-    dispatch(togglePrefer(id))
+    const data = {...item}
+    data.isPrefer = !data.isPrefer
+    dispatch({type:TOGGLE_PREFER, payload:id})
+    await api.preferItems(id, data)
 }
 
-export default mainPageReducer

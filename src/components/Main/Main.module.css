@@ -7,13 +7,13 @@
 }
 
 .itemsHeader{
+    margin: 35px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .itemsList{
-    margin: 35px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;

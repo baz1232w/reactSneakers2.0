@@ -4,8 +4,9 @@ import logo from '../../assets/header/logo.png'
 import {CartIcons} from "../../assets/header/icons/CartIcons.jsx";
 import {HartIcons} from "../../assets/header/icons/HartIcons";
 import {ProfileIcon} from "../../assets/header/icons/ProfileIcon.jsx";
+import {connect} from "react-redux";
 
-export const Header = () => {
+const HeaderContainer = ({totalPrice,totalPrefer}) => {
     return (
         <div className={s.header}>
                 <div className={s.headers}>
@@ -17,11 +18,21 @@ export const Header = () => {
                 </div>
                 <div className={s.navigation}>
                     <CartIcons/>
-                    <span>5999</span>
+                    <span>{totalPrice}</span>
                     <HartIcons/>
+                    <span>{totalPrefer}</span>
                     <ProfileIcon/>
                 </div>
         </div>
     );
 };
+
+const mapStateToProps = (state) => ({
+    totalPrice: state.cart.totalPrice,
+    totalPrefer: state.mainPage.totalPrefer
+})
+
+export default connect(mapStateToProps,{
+
+})(HeaderContainer)
 

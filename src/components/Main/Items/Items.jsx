@@ -1,24 +1,25 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import s from '../Main.module.css'
 import {Item} from "./Item/item.jsx";
 
-export const Items = ({items, fetchItems, setPreferItem}) => {
+export const Items = ({items, setPreferItem,isLoading,error,addToCart,deleteFormCart,setAddedToCart}) => {
 
-    useEffect(() => {
-        fetchItems()
-    }, [])
+    if(isLoading){
+        return <div>Loading</div>
+    }
+
+    if(error){
+        return <div>{error}</div>
+    }
 
     return (
         <div className={s.items}>
-            <div className={s.itemsHeader}>
-                <h2>Все кроссовки</h2>
-                <input type="text" placeholder='Поиск'/>
-            </div>
+
             <div className={s.itemsList}>
                 {items.map(el => {
                     return (
-                        <Item togglePrefer={() => setPreferItem(el.id, el)} key={el.id} img={el.img} tittle={el.tittle}
-                              price={el.price} isPrefer={el.isPrefer}/>
+                        <Item setAddedToCart={()=> setAddedToCart(el.id,el)} deleteItem={()=> deleteFormCart(el)} addToCart={()=> addToCart(el)} togglePrefer={() => {setPreferItem(el.id, el)
+                        }} key={el.id} el={el}/>
                     )
                 })}
             </div>
