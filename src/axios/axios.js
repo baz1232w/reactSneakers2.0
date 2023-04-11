@@ -10,12 +10,8 @@ export const api = {
         return items.data
     },
 
-    preferItems: async (id,item) =>{
-        await request.put(`/item/${id}`,{...item})
+    changeItem : (id,item) =>{
+            request.put(`/item/${id}`,{...item})
     },
-
-    addedItems: async (id,item) =>{
-        await request.put(`/item/${id}`,{...item})
-    }
 }
 

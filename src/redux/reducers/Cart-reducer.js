@@ -1,7 +1,8 @@
 import {getLocalStorage, getTotalPrice} from "../../utilities/getLocalStorage.js";
 
 const ADD_TO_CART = 'cart/addToCart',
-    DELETED_FROM_CART = 'cart/deletedFromCart';
+    DELETED_FROM_CART = 'cart/deletedFromCart',
+    CLEAN_CART = 'cart/cleanCart';
 
 const
     initialState = {
@@ -23,6 +24,11 @@ export const cartReducer = (state = initialState, action) => {
                 items: [...state.items].filter(el => el.id !== action.payload.id),
                 totalPrice: state.totalPrice -= action.payload.price
             }
+        case CLEAN_CART:
+            return{
+                items:[],
+                totalPrice: 0
+            }
     }
     return state
 }
@@ -40,6 +46,10 @@ export const deleteFormCart = (item) => {
         payload: item
     }
 }
+
+export const cleanCart = () => ({
+    type: CLEAN_CART
+})
 
 
 

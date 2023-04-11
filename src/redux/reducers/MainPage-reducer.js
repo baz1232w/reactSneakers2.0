@@ -16,13 +16,13 @@ const initialState = {
 export const mainPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_ITEMS:
-            return{
+            return {
                 ...state,
                 isLoading: true
-        }
+            }
         case FETCH_ITEMS_SUCCESS:
             let num = 0;
-            action.payload.forEach(el=>{
+            action.payload.forEach(el => {
                 el.isPrefer ? num++ : false
             })
             return {
@@ -30,9 +30,9 @@ export const mainPageReducer = (state = initialState, action) => {
                 items: action.payload,
                 isLoading: false,
                 totalPrefer: num
-                }
+            }
         case FETCH_ITEMS_ERROR:
-            return{
+            return {
                 ...state,
                 error: action.payload
             }
@@ -41,11 +41,11 @@ export const mainPageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 items: state.items.map(el => {
-                    if(el.id === action.payload){
+                    if (el.id === action.payload) {
                         el.isPrefer = !el.isPrefer
-                        if(el.isPrefer){
+                        if (el.isPrefer) {
                             total++
-                        }else{
+                        } else {
                             total--
                         }
                     }
@@ -58,7 +58,7 @@ export const mainPageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 items: state.items.map(el => {
-                    if(el.id === action.payload){
+                    if (el.id === action.payload) {
                         el.isAdded = !el.isAdded
                     }
                     return el
@@ -69,21 +69,20 @@ export const mainPageReducer = (state = initialState, action) => {
 }
 
 
-
-export const setAddedToCart = (id,item) => async (dispatch) =>{
+export const setAddedToCart = (id, item) => async (dispatch) => {
     const data = {...item}
     data.isAdded = !data.isAdded
-    dispatch({type:ADD_TO_CART, payload: id})
-    await api.addedItems(id,data)
+    dispatch({type: ADD_TO_CART, payload: id})
+    await api.changeItem(id, data)
 }
 
 export const fetchItems = () => async (dispatch) => {
-    dispatch({type:FETCH_ITEMS})
+    dispatch({type: FETCH_ITEMS})
     try {
         const items = await api.getItems()
-        dispatch({type:FETCH_ITEMS_SUCCESS, payload:items})
-    } catch (error){
-        dispatch({type:FETCH_ITEMS_ERROR, payload:error.text})
+        dispatch({type: FETCH_ITEMS_SUCCESS, payload: items})
+    } catch (error) {
+        dispatch({type: FETCH_ITEMS_ERROR, payload: error.text})
     }
 
 }
@@ -91,7 +90,8 @@ export const fetchItems = () => async (dispatch) => {
 export const setPreferItem = (id, item) => async (dispatch) => {
     const data = {...item}
     data.isPrefer = !data.isPrefer
-    dispatch({type:TOGGLE_PREFER, payload:id})
-    await api.preferItems(id, data)
+    dispatch({type: TOGGLE_PREFER, payload: id})
+    await api.changeItem(id, data)
 }
+
 

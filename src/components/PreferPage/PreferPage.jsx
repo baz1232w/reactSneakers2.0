@@ -11,7 +11,7 @@ const PreferPage = ({items}) => {
                 {items.map(el => {
                     if (el.isPrefer) {
                         return (
-                            <Item el={el}/>
+                            <Item key={el.id} el={el}/>
                         )
                     }
                 })}
