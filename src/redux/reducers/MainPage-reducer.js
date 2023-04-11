@@ -1,5 +1,4 @@
 import {api} from "../../axios/axios.js";
-import {act} from "react-dom/test-utils";
 
 const FETCH_ITEMS_SUCCESS = 'mainPage/fetchItemsSuccess'
 const FETCH_ITEMS = 'mainPage/fetchItems'
@@ -22,11 +21,16 @@ export const mainPageReducer = (state = initialState, action) => {
                 isLoading: true
         }
         case FETCH_ITEMS_SUCCESS:
+            let num = 0;
+            action.payload.forEach(el=>{
+                el.isPrefer ? num++ : false
+            })
             return {
                 ...state,
                 items: action.payload,
-                isLoading: false
-            }
+                isLoading: false,
+                totalPrefer: num
+                }
         case FETCH_ITEMS_ERROR:
             return{
                 ...state,

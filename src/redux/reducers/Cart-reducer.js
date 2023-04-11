@@ -1,13 +1,13 @@
 import {getLocalStorage, getTotalPrice} from "../../utilities/getLocalStorage.js";
 
 const ADD_TO_CART = 'cart/addToCart',
-    DELETED_FROM_CART = 'cart/deletedFromCart',
-    CLEAN_CART = 'cart/cleanCart'
+    DELETED_FROM_CART = 'cart/deletedFromCart';
 
-const initialState = {
-    items: getLocalStorage(),
-    totalPrice: getTotalPrice()
-}
+const
+    initialState = {
+        items: getLocalStorage(),
+        totalPrice: getTotalPrice()
+    }
 
 export const cartReducer = (state = initialState, action) => {
     switch (action.type) {

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {setAddedToCart, fetchItems, setPreferItem} from '../../redux/reducers/MainPage-reducer.js';
 import {connect} from 'react-redux';
 import {Slider} from './Slider/Slider.jsx';
@@ -13,11 +13,26 @@ const MainPageContainer = (props) => {
         props.fetchItems()
     }, [])
 
+    const [inputText,setInputText] = useState('')
+
+    const handleInputText = (e) => {
+        setInputText(e.target.value)
+    }
+
+    let filteredItems = props.items.filter(el => {
+        if(!setInputText){
+            return el
+        }else{
+            return el.tittle.toLowerCase().includes(inputText)
+        }
+    })
+
+
     return (
         <div className={s.container}>
             <Slider/>
-            <Search/>
-            <Items {...props}/>
+            <Search inputText={inputText} handleInputText={handleInputText}/>
+            <Items {...props} items={filteredItems}/>
         </div>
     );
 };
