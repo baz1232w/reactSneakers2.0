@@ -3,8 +3,9 @@ import {connect} from "react-redux";
 import {Item} from "../Main/Items/Item/item";
 import {cleanCart} from "../../redux/reducers/Cart-reducer.js";
 import {setAddedToCart} from "../../redux/reducers/MainPage-reducer.js";
+import s from './Cart.module.css'
 
-const CartContainer = (props) => {
+const CartContainer = ({isOpen,...props}) => {
 
     useEffect(() => {
         const items = JSON.stringify(props.items)
@@ -35,7 +36,8 @@ const CartContainer = (props) => {
     }
 
     return (
-        <div>
+        <div className={s.cart + ' ' + (isOpen ? s.open : s.closed)}>
+            <h2>Корзина</h2>
             {props.items.map(el => {
                 return (
                     <Item key={el.id} el={el}/>
@@ -49,6 +51,7 @@ const CartContainer = (props) => {
 
 const mapStateToProps = (state) => ({
     items: state.cart.items,
+    isOpen: state.cart.isOpen,
     totalPrice: state.cart.totalPrice
 })
 

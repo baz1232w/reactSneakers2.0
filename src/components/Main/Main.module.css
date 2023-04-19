@@ -15,24 +15,37 @@
 
 .itemsList{
     display: flex;
-    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap:40px;
 }
 
 .item{
     flex-basis: 210px;
+    border: 1px solid #F3F3F3;
+    border-radius: 40px;
+    padding: 20px 29px 24px 31px;
 }
+
+
 
 .sneakersImage{
     width: 133px;
     height: 112px;
 }
+.disription{
+    margin: 14px 0;
+    line-height: 17px;
+}
 
 .item p{
     font-weight: 400;
     font-size: 14px;
-    line-height: 17px;
+}
+
+.priceZone{
+    display: flex;
+    justify-content: space-between;
 }
 
 .priceHeader{
@@ -46,6 +59,16 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
+}
+
+.imgContainer{
+    position: relative;
+}
+
+.btnPrefer{
+    position: absolute;
+    top:30px;
+    left: 0px;
 }
 
 .unPrefer{

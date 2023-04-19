@@ -1,6 +1,6 @@
-export const CartIcons = () => {
+export const CartIcons = ({fun}) => {
     return(
-        <svg
+        <svg onClick={fun}
             width="20"
             height="20"
             viewBox="0 0 20 20"

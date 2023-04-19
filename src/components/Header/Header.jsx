@@ -6,8 +6,9 @@ import {HartIcons} from "../../assets/header/icons/HartIcons";
 import {ProfileIcon} from "../../assets/header/icons/ProfileIcon.jsx";
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
+import {toggleCart} from "../../redux/reducers/Cart-reducer.js";
 
-const HeaderContainer = ({totalPrice,totalPrefer}) => {
+const HeaderContainer = ({totalPrice,totalPrefer,toggleCart}) => {
     return (
         <div className={s.header}>
                 <div className={s.headers}>
@@ -20,7 +21,7 @@ const HeaderContainer = ({totalPrice,totalPrefer}) => {
                     </div>
                 </div>
                 <div className={s.navigation}>
-                    <CartIcons/>
+                    <CartIcons fun={toggleCart}/>
                     <span>{totalPrice}</span>
                     <NavLink to={'/prefer'}><HartIcons/></NavLink>
                     <span>{totalPrefer}</span>
@@ -36,6 +37,6 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps,{
-
+    toggleCart
 })(HeaderContainer)
 

@@ -1,0 +1,16 @@
+.cart{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    z-index: 20;
+}
+
+.open{
+    display: block;
+}
+
+.closed{
+    display: none;
+}
+

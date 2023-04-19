@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Item} from "../Main/Items/Item/item";
 import {connect} from "react-redux";
+import s from '../Main/Main.module.css'
 
 const HistoryPage = (props) => {
     const [items,setItems] = useState([])
@@ -12,11 +13,13 @@ const HistoryPage = (props) => {
     },[])
 
     return (
-        <div>
+        <div className={s.container}>
             <h2>Мои покупки</h2>
-            {items.map(el=>{
-                    return <Item key={el.id} el={el}/>
-            })}
+            <div className={s.itemsList}>
+                {items.map(el=>{
+                    return <Item key={el.id} el={el} history={true}/>
+                })}
+            </div>
         </div>
     );
 };

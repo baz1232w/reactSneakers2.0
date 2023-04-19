@@ -2,12 +2,14 @@ import {getLocalStorage, getTotalPrice} from "../../utilities/getLocalStorage.js
 
 const ADD_TO_CART = 'cart/addToCart',
     DELETED_FROM_CART = 'cart/deletedFromCart',
-    CLEAN_CART = 'cart/cleanCart';
+    CLEAN_CART = 'cart/cleanCart',
+    TOGGLE_CART = 'cart/toggleCart'
 
 const
     initialState = {
         items: getLocalStorage(),
-        totalPrice: getTotalPrice()
+        totalPrice: getTotalPrice(),
+        isOpen: false,
     }
 
 export const cartReducer = (state = initialState, action) => {
@@ -29,9 +31,18 @@ export const cartReducer = (state = initialState, action) => {
                 items:[],
                 totalPrice: 0
             }
+        case TOGGLE_CART:
+            return {
+                ...state,
+                isOpen: !state.isOpen
+            }
     }
     return state
 }
+
+export const toggleCart = () => ({
+    type: TOGGLE_CART
+})
 
 export const addToCart = (item) => {
     return {
