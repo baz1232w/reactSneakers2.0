@@ -21,21 +21,19 @@
 }
 
 .item{
+    position: relative;
     flex-basis: 210px;
     border: 1px solid #F3F3F3;
     border-radius: 40px;
-    padding: 20px 29px 24px 31px;
+    padding: 29px 29px 31px 24px;
 }
-
-
 
 .sneakersImage{
     width: 133px;
     height: 112px;
 }
 .disription{
-    margin: 14px 0;
-    line-height: 17px;
+    margin: 12px 0;
 }
 
 .item p{
@@ -65,18 +63,46 @@
     position: relative;
 }
 
-.btnPrefer{
+.preferBtn ion-icon {
+    margin: 0;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #F8F8F8;
+}
+
+.preferBtn{
+    top: 0;
+    left: 0;
     position: absolute;
-    top:30px;
-    left: 0px;
 }
 
-.unPrefer{
-    background-color: green;
+.prefer {
+    top: 0;
+    left: 0;
+    position: absolute;
 }
 
-.setPrefer{
-    background-color: red;
+ion-icon{
+    font-size: 25px;
+    padding: 5px;
+    color: #9b9b9b;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
+ion-icon:hover{
+    background-color: #d3d2d2;
+    transition: .1s all linear;
+}
 
+.prefer ion-icon {
+    margin: 0;
+    color: #FF8585;
+    background-color: #FEF0F0;
+    border: 1px solid #FEF0F0;
+}
+
+.added{
+    color: #fff;
+    background: linear-gradient(180deg,#89F09C 0%,#3CC755 100%) ;
+}

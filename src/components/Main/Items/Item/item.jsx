@@ -1,7 +1,9 @@
 import React from 'react';
 import s from '../../Main.module.css'
+import {IonIcon} from '@ionic/react'
+import {heart, heartOutline, addOutline,checkmarkOutline} from "ionicons/icons"
 
-export const Item = ({el,addToCart,togglePrefer,setAddedToCart,deleteItem,...props}) => {
+export const Item = ({el, addToCart, togglePrefer, setAddedToCart, deleteItem, ...props}) => {
 
     return (
         <div className={s.item}>
@@ -9,7 +11,13 @@ export const Item = ({el,addToCart,togglePrefer,setAddedToCart,deleteItem,...pro
                 {props.history ?
                     null
                     :
-                    <button onClick={togglePrefer} className={s.btnPrefer + ' ' + (el.isPrefer ? s.unPrefer : s.setPrefer  )}>{el.isPrefer ? 'unPrefer' : 'Prefer'}</button>
+                    el.isPrefer
+                        ?
+                        <span className={s.prefer}><IonIcon onClick={togglePrefer} icon={heart}></IonIcon></span>
+                        :
+                        <span className={s.preferBtn}><IonIcon onClick={togglePrefer}
+                                                               icon={heartOutline}></IonIcon></span>
+
                 }
                 <img className={s.sneakersImage} src={el.img} alt={el.tittle}/>
             </div>
@@ -26,22 +34,20 @@ export const Item = ({el,addToCart,togglePrefer,setAddedToCart,deleteItem,...pro
                     {props.history ?
                         null
                         :
-                        <button className={el.isAdded ? s.unPrefer : s.setPrefer} onClick={()=>{
-                            if(!el.isAdded){
+                        <IonIcon className={el.isAdded ? s.added : null} onClick={() => {
+                            if (!el.isAdded) {
                                 addToCart()
                                 setAddedToCart()
-                            }else{
+                            } else {
                                 deleteItem()
                                 setAddedToCart()
                             }
                         }
-                        }>{el.isAdded ? 'Delete' : 'Add'}</button>
-                    }
-
-
+                        } icon={el.isAdded ? checkmarkOutline : addOutline}></IonIcon>}
                 </div>
             </div>
         </div>
-    );
+    )
+        ;
 };
 
