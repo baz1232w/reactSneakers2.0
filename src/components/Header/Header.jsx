@@ -21,10 +21,15 @@ const HeaderContainer = ({totalPrice,totalPrefer,toggleCart}) => {
                     </div>
                 </div>
                 <div className={s.navigation}>
-                    <CartIcons fun={toggleCart}/>
-                    <span>{totalPrice}</span>
-                    <NavLink to={'/prefer'}><HartIcons/></NavLink>
-                    <span>{totalPrefer}</span>
+                    <div>
+                        <CartIcons fun={toggleCart}/>
+                        {totalPrice ?
+                            <span>{totalPrice} грн.</span>
+                            :
+                            null
+                        }
+                    </div>
+                    <NavLink to={'/prefer'}>< HartIcons total={totalPrefer}/></NavLink>
                     <NavLink to={'/history'}><ProfileIcon/></NavLink>
                 </div>
         </div>

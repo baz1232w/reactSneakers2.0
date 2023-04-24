@@ -23,7 +23,7 @@ const MainPageContainer = (props) => {
         if(!setInputText){
             return el
         }else{
-            return el.tittle.toLowerCase().includes(inputText)
+            return el.tittle.toLowerCase().includes(inputText.toLowerCase())
         }
     })
 

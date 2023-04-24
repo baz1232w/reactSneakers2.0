@@ -2,15 +2,21 @@ import React, {useEffect, useState} from 'react';
 import {Item} from "../Main/Items/Item/item";
 import {connect} from "react-redux";
 import s from '../Main/Main.module.css'
+import {EmptyPage} from "../EmptyPage/EmptyPage";
 
 const HistoryPage = (props) => {
     const [items,setItems] = useState([])
+
     useEffect(()=>{
         const json = localStorage.getItem('history')
         if(json){
             setItems(JSON.parse(json))
         }
     },[])
+
+    if(!items.length){
+        return <EmptyPage/>
+    }
 
     return (
         <div className={s.container}>

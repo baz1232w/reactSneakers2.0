@@ -47,5 +47,22 @@
 
 .navigation{
     display: flex;
+    align-items: center;
     gap:30px
+}
+
+.navigation div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navigation span{
+    font-weight: 500;
+    color: #5C5C5C;
+    font-size: 14px;
+}
+
+.headIcon{
+    cursor: pointer;
 }

@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {Item} from "../Main/Items/Item/item";
-import {cleanCart, toggleCart} from "../../redux/reducers/Cart-reducer.js";
+import {cleanCart, deleteFormCart, toggleCart} from "../../redux/reducers/Cart-reducer.js";
 import {setAddedToCart} from "../../redux/reducers/MainPage-reducer.js";
 import s from './Cart.module.css'
+import {CartItem} from "./CartItem/CartItem.jsx";
 
-const CartContainer = ({isOpen, toggleCart, ...props}) => {
+const CartContainer = ({isOpen, toggleCart,deleteFormCart,setAddedToCart, ...props}) => {
 
     useEffect(() => {
         const items = JSON.stringify(props.items)
@@ -43,13 +43,16 @@ const CartContainer = ({isOpen, toggleCart, ...props}) => {
                     <h2>Корзина</h2>
                     {props.items.map(el => {
                         return (
-                            <Item key={el.id} el={el}/>
+                            <CartItem key={el.id} el={el} deleteItem={()=> {deleteFormCart(el)}} setAddedToCart={()=> setAddedToCart(el.id,el)}/>
                         )
                     })}
                 </div>
                 <div>
-                    <h2>{props.totalPrice}</h2>
-                    <button onClick={getOrder}>ORDER</button>
+                    <div className={s.totalPrice}>
+                        <span>Итого...</span>
+                        <span><b>{props.totalPrice} грн</b></span>
+                    </div>
+                    <button className={s.orderBtn} onClick={getOrder}>Оформить заказ</button>
                 </div>
             </div>
         </div>
@@ -65,5 +68,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
     cleanCart,
     setAddedToCart,
-    toggleCart
+    toggleCart,
+    deleteFormCart
 })(CartContainer)

@@ -1,6 +1,8 @@
+import s from '../../../components/Header/Header.module.css'
+
 export const CartIcons = ({fun}) => {
     return(
-        <svg onClick={fun}
+        <svg className={s.headIcon} onClick={fun}
             width="20"
             height="20"
             viewBox="0 0 20 20"
