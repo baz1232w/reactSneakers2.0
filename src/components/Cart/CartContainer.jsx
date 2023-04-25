@@ -4,6 +4,7 @@ import {cleanCart, deleteFormCart, toggleCart} from "../../redux/reducers/Cart-r
 import {setAddedToCart} from "../../redux/reducers/MainPage-reducer.js";
 import s from './Cart.module.css'
 import {CartItem} from "./CartItem/CartItem.jsx";
+import {EmptyPage} from "../EmptyPage/EmptyPage";
 
 const CartContainer = ({isOpen, toggleCart,deleteFormCart,setAddedToCart, ...props}) => {
 
@@ -35,24 +36,32 @@ const CartContainer = ({isOpen, toggleCart,deleteFormCart,setAddedToCart, ...pro
         props.cleanCart()
     }
 
+
     return (
         <div className={s.cart + ' ' + (isOpen ? s.open : s.closed)}>
             <div className={s.flex}>
                 <div>
                     <span onClick={toggleCart}>Back-></span>
                     <h2>Корзина</h2>
-                    {props.items.map(el => {
-                        return (
-                            <CartItem key={el.id} el={el} deleteItem={()=> {deleteFormCart(el)}} setAddedToCart={()=> setAddedToCart(el.id,el)}/>
-                        )
-                    })}
+                    {props.items.length === 0 ?
+                        <EmptyPage/>
+                        :
+                        <>
+                            {props.items.map(el => {
+                                return (
+                                    <CartItem key={el.id} el={el} deleteItem={()=> {deleteFormCart(el)}} setAddedToCart={()=> setAddedToCart(el.id,el)}/>
+                                )
+                            })}
+                        </>
+                    }
+
                 </div>
                 <div>
                     <div className={s.totalPrice}>
                         <span>Итого...</span>
                         <span><b>{props.totalPrice} грн</b></span>
                     </div>
-                    <button className={s.orderBtn} onClick={getOrder}>Оформить заказ</button>
+                    <button className={s.orderBtn} onClick={getOrder} disabled={props.totalPrice <= 0}>Оформить заказ</button>
                 </div>
             </div>
         </div>
