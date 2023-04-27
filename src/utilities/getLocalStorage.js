@@ -6,12 +6,3 @@ export const getLocalStorage = () => {
     }
     return items || []
 }
-
-export const getTotalPrice = () => {
-    const json = localStorage.getItem('totalPrice')
-    let totalPrice
-    if(json){
-        totalPrice = JSON.parse(json)
-    }
-    return totalPrice || 0
-}

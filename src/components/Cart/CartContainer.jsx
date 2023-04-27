@@ -1,19 +1,17 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {cleanCart, deleteFormCart, toggleCart} from "../../redux/reducers/Cart-reducer.js";
+import {cleanCart, deleteFormCart, setTotalPrice, toggleCart} from "../../redux/reducers/Cart-reducer.js";
 import {setAddedToCart} from "../../redux/reducers/MainPage-reducer.js";
 import s from './Cart.module.css'
 import {CartItem} from "./CartItem/CartItem.jsx";
 import {EmptyPage} from "../EmptyPage/EmptyPage";
 
-const CartContainer = ({isOpen, toggleCart,deleteFormCart,setAddedToCart, ...props}) => {
+const CartContainer = ({isOpen, toggleCart, deleteFormCart, setAddedToCart, setTotalPrice, ...props}) => {
 
     useEffect(() => {
         const items = JSON.stringify(props.items)
-        const totalPrice = JSON.stringify(props.totalPrice)
         localStorage.setItem('cart', items)
-        localStorage.setItem('totalPrice', totalPrice)
-
+        setTotalPrice()
     }, [props.items])
 
     const getOrder = async () => {
@@ -25,12 +23,8 @@ const CartContainer = ({isOpen, toggleCart,deleteFormCart,setAddedToCart, ...pro
         }
 
         localStorage.setItem('cart', JSON.stringify([]))
-        localStorage.setItem('totalPrice', JSON.stringify(0))
-        await props.items.forEach(el => {
-            setTimeout(() => {
-                props.setAddedToCart(el.id, el)
-                console.log('fff')
-            }, 2000)
+        props.items.forEach(el => {
+            setAddedToCart(el.id, el)
         })
 
         props.cleanCart()
@@ -49,19 +43,21 @@ const CartContainer = ({isOpen, toggleCart,deleteFormCart,setAddedToCart, ...pro
                         <>
                             {props.items.map(el => {
                                 return (
-                                    <CartItem key={el.id} el={el} deleteItem={()=> {deleteFormCart(el)}} setAddedToCart={()=> setAddedToCart(el.id,el)}/>
+                                    <CartItem key={el.id} el={el} deleteItem={() => {
+                                        deleteFormCart(el)
+                                    }} setAddedToCart={() => setAddedToCart(el.id, el)}/>
                                 )
                             })}
                         </>
                     }
-
                 </div>
                 <div>
                     <div className={s.totalPrice}>
                         <span>Итого...</span>
                         <span><b>{props.totalPrice} грн</b></span>
                     </div>
-                    <button className={s.orderBtn} onClick={getOrder} disabled={props.totalPrice <= 0}>Оформить заказ</button>
+                    <button className={s.orderBtn} onClick={getOrder} disabled={props.totalPrice <= 0}>Оформить заказ
+                    </button>
                 </div>
             </div>
         </div>
@@ -78,5 +74,6 @@ export default connect(mapStateToProps, {
     cleanCart,
     setAddedToCart,
     toggleCart,
-    deleteFormCart
+    deleteFormCart,
+    setTotalPrice
 })(CartContainer)

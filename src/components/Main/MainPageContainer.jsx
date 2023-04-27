@@ -13,16 +13,16 @@ const MainPageContainer = (props) => {
         props.fetchItems()
     }, [])
 
-    const [inputText,setInputText] = useState('')
+    const [inputText, setInputText] = useState('')
 
     const handleInputText = (e) => {
         setInputText(e.target.value)
     }
 
     let filteredItems = props.items.filter(el => {
-        if(!setInputText){
+        if (!setInputText) {
             return el
-        }else{
+        } else {
             return el.tittle.toLowerCase().includes(inputText.toLowerCase())
         }
     })
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => ({
     error: state.mainPage.error
 })
 
-export default connect(mapStateToProps,{
+export default connect(mapStateToProps, {
     fetchItems,
     setPreferItem,
     addToCart,

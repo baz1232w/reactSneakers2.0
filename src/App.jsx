@@ -5,7 +5,7 @@ import s from "./App.module.css"
 import CartContainer from "./components/Cart/CartContainer.jsx";
 import PreferPage from "./components/PreferPage/PreferPage.jsx";
 import {Route, Routes} from "react-router-dom";
-import HistoryPage from "./components/HistoryPage/HistoryPage.jsx";
+import {HistoryPage} from "./components/HistoryPage/HistoryPage.jsx";
 import React from "react";
 import {useSelector} from "react-redux";
 

@@ -5,10 +5,11 @@ import {A11y, Autoplay, Navigation, Pagination} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import s from './Slider.module.css'
 
 export const Slider = () => {
     return (
-        <div>
+        <>
             <Swiper
                 // install Swiper modules
                 modules={[Autoplay,Navigation, Pagination, A11y]}
@@ -26,7 +27,7 @@ export const Slider = () => {
                 <SwiperSlide> <img src={slider} alt="slider"/></SwiperSlide>
                 <SwiperSlide> <img src={slider} alt="slider"/></SwiperSlide>
             </Swiper>
-        </div>
+        </>
     );
 };
 

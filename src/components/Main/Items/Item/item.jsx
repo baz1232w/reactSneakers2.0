@@ -1,10 +1,9 @@
 import React from 'react';
 import s from '../../Main.module.css'
 import {IonIcon} from '@ionic/react'
-import {heart, heartOutline, addOutline,checkmarkOutline} from "ionicons/icons"
+import {heart, heartOutline, addOutline, checkmarkOutline} from "ionicons/icons"
 
 export const Item = ({el, addToCart, togglePrefer, setAddedToCart, deleteItem, ...props}) => {
-
     return (
         <div className={s.item}>
             <div className={s.imgContainer}>
@@ -17,7 +16,6 @@ export const Item = ({el, addToCart, togglePrefer, setAddedToCart, deleteItem, .
                         :
                         <span className={s.preferBtn}><IonIcon onClick={togglePrefer}
                                                                icon={heartOutline}></IonIcon></span>
-
                 }
                 <img className={s.sneakersImage} src={el.img} alt={el.tittle}/>
             </div>
@@ -47,7 +45,6 @@ export const Item = ({el, addToCart, togglePrefer, setAddedToCart, deleteItem, .
                 </div>
             </div>
         </div>
-    )
-        ;
+    );
 };
 

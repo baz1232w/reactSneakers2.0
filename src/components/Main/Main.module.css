@@ -1,8 +1,8 @@
-.container{
+.container {
     padding: 45px 60px 40px 60px;
 }
 
-.searchContainer{
+.searchContainer {
     padding: 15px 10px 13px 18px;
     display: flex;
     gap: 5px;
@@ -16,37 +16,37 @@
     padding: 0;
 }
 
-.searchIcon:hover{
+.searchIcon:hover {
     cursor: inherit;
     background-color: transparent;
 }
 
-.search{
+.search {
     font-size: 14px;
-    color:#c3c3c3;
+    color: #c3c3c3;
     border: none;
     outline: none;
 }
 
-.items{
+.items {
     margin: 35px 0px;
 }
 
-.itemsHeader{
+.itemsHeader {
     margin: 35px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.itemsList{
+.itemsList {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap:40px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
     margin-top: 40px;
 }
 
-.item{
+.item {
     position: relative;
     flex-basis: 210px;
     border: 1px solid #F3F3F3;
@@ -55,43 +55,43 @@
     transition: .2s transform ease-in-out, .2s box-shadow ease-in-out;
 }
 
-.item:hover{
+.item:hover {
     box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
     transform: translateY(-10px);
 }
 
-.sneakersImage{
+.sneakersImage {
     width: 133px;
     height: 112px;
 }
-.disription{
+.disription {
     margin: 12px 0;
 }
 
-.item p{
+.item p {
     font-weight: 400;
     font-size: 14px;
 }
 
-.priceZone{
+.priceZone {
     display: flex;
     justify-content: space-between;
 }
 
-.priceHeader{
+.priceHeader {
     color: #BDBDBD;
     font-weight: 500;
     font-size: 11px;
     line-height: 13px;
 }
 
-.price{
+.price {
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
 }
 
-.imgContainer{
+.imgContainer {
     position: relative;
 }
 
@@ -102,7 +102,7 @@
     border: 1px solid #F8F8F8;
 }
 
-.preferBtn{
+.preferBtn {
     top: 0;
     left: 0;
     position: absolute;
@@ -114,7 +114,7 @@
     position: absolute;
 }
 
-ion-icon{
+ion-icon {
     font-size: 25px;
     padding: 5px;
     color: #9b9b9b;
@@ -122,7 +122,7 @@ ion-icon{
     border-radius: 5px;
 }
 
-ion-icon:hover{
+ion-icon:hover {
     background-color: #d3d2d2;
     transition: .1s all linear;
 }
@@ -134,7 +134,7 @@ ion-icon:hover{
     border: 1px solid #FEF0F0;
 }
 
-.added{
+.added {
     color: #fff;
-    background: linear-gradient(180deg,#89F09C 0%,#3CC755 100%) ;
+    background: linear-gradient(180deg, #89F09C 0%, #3CC755 100%);
 }
